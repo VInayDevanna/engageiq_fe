@@ -1,0 +1,166 @@
+<section class="section ikigai-teams">
+  <header class="section__header bg-red">
+    <h1>Codename Pulse</h1>
+    <h6>Please select the team to start ikigai</h6>
+    <section class="section__header__description bg-black">
+      <button class="left--section disabled">Sept</button>
+      <h3 class="middle--section">IKIGAI: Team Reflection</h3>
+      @if(headerEdit){
+        <button class="right--section primary">Submit</button>
+      }
+      @else {
+        <section class="right--section flex-container"><span>Ready to Download</span><mat-icon class="warning">download</mat-icon></section>
+      }
+    </section>
+  </header>
+  <section class="section__members">
+    <!-- <section class="section__members__description active">
+      <img class="avatar" src="assets/Avatars/M/Gemini_Generated_Image_mo6jucmo6jucmo6j.jpeg" alt="Male">
+      <p>Prasad</p>
+    </section>
+    <section class="section__members__description">
+      <img class="avatar" src="assets/Avatars/M/Gemini_Generated_Image_mo6jucmo6jucmo6j.jpeg" alt="Male">
+      <p>Sritaj</p>
+    </section>
+    <section class="section__members__description">
+      <img class="avatar" src="assets/Avatars/M/Gemini_Generated_Image_mo6jucmo6jucmo6j.jpeg" alt="Male">
+      <p>Vinay</p>
+    </section>
+    <section class="section__members__description">
+      <img class="avatar" src="assets/Avatars/M/Gemini_Generated_Image_mo6jucmo6jucmo6j.jpeg" alt="Male">
+      <p>Utkarsh</p>
+    </section>
+    <section class="section__members__description">
+      <img class="avatar" src="assets/Avatars/M/Gemini_Generated_Image_mo6jucmo6jucmo6j.jpeg" alt="Male">
+      <p>Shivam</p>
+    </section>
+    <section class="section__members__description">
+      <img class="avatar" src="assets/Avatars/F/Gemini_Generated_Image_juzxejjuzxejjuzx.jpeg" alt="Female">
+      <p>Shilpa</p>
+    </section>
+    <section class="section__members__description">
+      <img class="avatar" src="assets/Avatars/M/Gemini_Generated_Image_mo6jucmo6jucmo6j.jpeg" alt="Male">
+      <p>Ponniah</p>
+    </section> -->
+    <ng-container *ngFor="let teamMembers of ikigaiIndividualTeams.teamMembersList">
+      <section class="section__members__description">
+        <img class="avatar" src="assets/Avatars/M/Gemini_Generated_Image_mo6jucmo6jucmo6j.jpeg" alt="Male">
+        <p>{{teamMembers.empName}}</p>
+      </section>
+    </ng-container>
+  </section>
+  <section class="section__ikigai">
+    <section class="section__card">
+      <!--Card Header-->
+      <section class="section__card__header">
+        <mat-icon [ngClass]="goingGoodDisabled?'left--section disabled':'left--section warning'">info</mat-icon>
+        <h6 [ngClass]="goingGoodDisabled?'middle--section disabled':'middle--section'">What's Going Good?</h6>
+        <mat-icon [ngClass]="goingGoodDisabled?'right--section disabled':'right--section success'" (click)="handleGoingGood()">edit</mat-icon>
+      </section>
+      <!--Card Section-->
+      <section class="section__card__container">
+        <textarea name="" id="" class="card" [disabled]="goingGoodDisabled" value={{goingGood}}></textarea>
+      </section>
+    </section>
+    <section class="section__card">
+      <!--Card Header-->
+      <section class="section__card__header">
+        <mat-icon class="left--section primary disabled">info</mat-icon>
+        <h6 class="middle--section disabled">Highlights!! IKIGAI Aug 2024</h6>
+        <mat-icon class="right--section primary disabled">edit</mat-icon>
+      </section>
+      <!--Card Section-->
+      <section class="section__card__container">
+        <!-- <textarea name="" id="" class="card"></textarea> -->
+      </section>
+    </section>
+    <section class="section__card ">
+      <!--Card Header-->
+      <section class="section__card__header">
+        <mat-icon [ngClass]="KeyImprovementsDisabled?'left--section disabled':'left--section warning'">info</mat-icon>
+        <h6 [ngClass]="KeyImprovementsDisabled?'middle--section disabled':'middle--section'">Key Improvement Areas: Should-Have</h6>
+        <mat-icon [ngClass]="KeyImprovementsDisabled?'right--section disabled':'right--section success'" (click)="handleKeyImprovements()">edit</mat-icon>
+      </section>
+      <!--Card Section-->
+      <section class="section__card__container">
+        <textarea name="" id="" class="card" [disabled]="KeyImprovementsDisabled" value={{KeyImprovementsMustHave}}></textarea>
+      </section>
+    </section>
+    <section class="section__card ">
+      <!--Card Header-->
+      <section class="section__card__header">
+        <mat-icon class="left--section primary disabled">info</mat-icon>
+        <h6 class="middle--section disabled">Key Improvements Areas: Good-Have</h6>
+        <mat-icon class="right--section primary disabled">edit</mat-icon>
+      </section>
+      <!--Card Section-->
+      <section class="section__card__container">
+        <textarea name="" id="" class="card" disabled value={{KeyImprovementsGoodToHave}}></textarea>
+      </section>
+    </section>
+    <section class="section__card extend-row smart-">
+      <!--Card Header-->
+      <section class="section__card__header">
+        <mat-icon class="left--section primary disabled">info</mat-icon>
+        <h6 class="middle--section disabled">Action Items</h6>
+        <mat-icon class="right--section primary disabled">edit</mat-icon>
+      </section>
+      <!--Card Section-->
+      <section class="section__card__container">
+          <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort style="display: none;">
+            <!-- Actions Column -->
+            <ng-container matColumnDef="actions">
+              <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{ element.actions }} </mat-cell>
+            </ng-container>
+        
+            <!-- Category Column -->
+            <ng-container matColumnDef="category">
+              <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <span 
+                
+                >
+                  {{ element.category }}
+                </span>
+              </mat-cell>
+            </ng-container>
+        
+            <!-- Added On Column -->
+            <ng-container matColumnDef="addedOn">
+              <mat-header-cell *matHeaderCellDef> Added On </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{ element.addedOn }} </mat-cell>
+            </ng-container>
+        
+            <!-- Status Column -->
+            <ng-container matColumnDef="status">
+              <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <!-- <mat-chip-list>
+                  <mat-chip>
+                    {{ element.status }}
+                  </mat-chip>
+                </mat-chip-list> -->
+              </mat-cell>
+            </ng-container>
+        
+            <!-- Actions Dropdown -->
+            <ng-container matColumnDef="actionsDropdown">
+              <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <mat-select [(value)]="element.actionSelection">
+                  <mat-option *ngFor="let option of actionOptions" [value]="option">
+                    {{ option }}
+                  </mat-option>
+                </mat-select>
+              </mat-cell>
+            </ng-container>
+        
+            <!-- Header and Row -->
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+      </section>
+    </section>
+  </section>
+</section>

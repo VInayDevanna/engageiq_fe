@@ -1,0 +1,85 @@
+@use "../../../../styles/typography.scss" as *;
+@use "../../../../styles/mixins.scss" as *;
+@use "../../../../styles/variables.scss" as *;
+@use "../../../../styles/helpers.scss" as *;
+@use "../../../../styles/layouts.scss" as *;
+
+.ikigai-teams{
+  .section__members{
+    @extend .flex-container,.wrap,.space-evenly;
+    margin: $spacing;
+    &__description{
+      @extend .flex-container,.center, .column;
+      gap: 0;
+      border: $border-component;
+      padding: $spacing*0.25 $spacing 0 $spacing;
+      min-width: 100px;
+      background-color: #c3e9cc;
+      border: 1px solid #28a745;
+      border-radius: 4px;
+      &.active{
+        background-color: #bfe1f3;
+        border: 1px solid #007bff;
+      }
+      
+      .avatar{
+        width: 2.25rem;
+        height: auto;
+        border-radius: 50%;
+      }
+    }
+  }
+  .section__ikigai{
+    @extend .grid-container, .bg-white;
+    @include grid-template-column(1fr 2fr);
+    @include grid-template-row(1fr 1fr 1fr);
+    @include grid-row-gap(0);
+    margin: $spacing;
+    .section__card__header{
+      background-color: $color-gray-lighter;
+      color: $color-gray-dark;
+    }
+    .card{
+      box-shadow: none;
+      min-height: max-content;
+    }    
+    .extend-row{
+      @include grid-row(2,4);
+      @include grid-column(2,3);
+      .must-have {
+        color: white;
+        background-color: #e57373;
+        padding: 4px 8px;
+        border-radius: 4px;
+      }
+      
+      .good-have {
+        color: white;
+        background-color: #ffb74d;
+        padding: 4px 8px;
+        border-radius: 4px;
+      }
+      
+      .status-new {
+        background-color: #ffeb3b;
+        color: black;
+      }
+      
+      .status-good {
+        background-color: #4caf50;
+        color: white;
+      }
+      
+      .status-satisfactory {
+        background-color: #81c784;
+        color: white;
+      }
+      
+      .status-unsatisfactory {
+        background-color: #f44336;
+        color: white;
+      }
+    }
+  }
+  
+}
